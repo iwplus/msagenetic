@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Aug 12 21:23:36 2020
-
-@author: ASUS
-"""
-
 #from Bio import AlignIO
 #count = AlignIO.convert("opuntia1.aln", "clustal", "opuntia.sth","stockholm")
 #print("Converted %i alignments" % count)

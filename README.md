@@ -1,5 +1,5 @@
 # msagenetic
-Multiple sequence alignment using genetic algorithm 
+Multiple sequence alignment using _clustalw_ and _genetic algorithm_ 
 
 Contributors:
 1. Devi Lastri

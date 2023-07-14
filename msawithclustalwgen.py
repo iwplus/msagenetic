@@ -1,7 +1,3 @@
-#from Bio import AlignIO
-#count = AlignIO.convert("opuntia1.aln", "clustal", "opuntia.sth","stockholm")
-#print("Converted %i alignments" % count)
-
 import os
 from Bio.Align.Applications import ClustalwCommandline
 clustalw_exe = r"C:\Program Files (x86)\ClustalW2\clustalw2.exe"
@@ -17,10 +13,6 @@ print(align)
 from Bio import Phylo
 tree = Phylo.read("obn1.dnd", "newick")
 Phylo.draw_ascii(tree)
-
-#from Bio import AlignIO
-#count = AlignIO.convert("obn1.aln", "clustal", "obn1.sth","stockholm")
-#print("Converted %i alignments" % count)
 
 from Bio import AlignIO
 alignment = AlignIO.read("obn1.sth", "stockholm")
@@ -41,13 +33,11 @@ print("Array shape %i by %i" % align_array.shape)
 
 align_array = np.array([list(rec) for rec in alignment], np.character, order="F")
 
-#matriks hasil dari clustalw
+### clustalw result ####
+
 print('array')
 print (align_array)
 
-#from Bio import AlignIO
-#count = AlignIO.convert("obn0.fasta", "fasta", "obn0.sth","stockholm")
-#print("Converted %i alignments" % count)
 
 import numpy as np
 from Bio import AlignIO
@@ -68,25 +58,19 @@ for i in range(add):
                                            ['-'],
                                            ['-']],axis=1)
 
-#Membentuk Individu Ke-i (Matriks) berdasarkan 2 matriks sebelumnya
+#Forming i-th chromosome (Matrix)
 
-#Generate r dist uniform
-#q = int(input("nilai q"))
-#
-#R = np.zeros ((q,1))
-#for i in range(q):
-#    for 
 
 import random
 
 
-#inisialisasi populasi
+#### Population Init ###
+
 seedprob = 0.5
 
 
 mpop = []
 
-#Mengisi matriks ke-i
 for i in range(10):
     j=0
     while j<=3:
@@ -96,12 +80,11 @@ for i in range(10):
         else:
             mpop.append(align_array1[j])
         j+=1
-#np.savetxt('mpop.txt',mpop,fmt='%s')
+
         
 def ingen(matrix,i,j):
     matrix=[]
     for a in range(i,j):
-#        print(a)
         matrix.append(mpop[a])
     return matrix
 
@@ -109,7 +92,6 @@ gen=[]
 for i in range(10):
     geno=[]
     gen.append(ingen(geno,i*4,i*4+4))
-#    np.savetxt('gen%s.txt'%i,gen[i],fmt='%s')
 gennn=np.array(gen)
 print('gennya')
 #print(gennn)
@@ -135,8 +117,7 @@ for x in range (iterasii):
                 sub=[]
     
     print()
-    #print('f')
-    #print(f)
+    
     sume=[]
     for i in range(len(f)):
         subsum=[]
@@ -146,7 +127,7 @@ for x in range (iterasii):
     def infit(matr,i,j):
         matr=[]
         for t in range(i,j):
-    #        print(a)
+    
             matr.append(sume[t])
         return matr    
     
@@ -160,68 +141,27 @@ for x in range (iterasii):
         subsumf=[]
         subsumf.append(np.sum(fit[i]))
         sumf.append(subsumf)
-    #    subsume=[]
-    #    subsume.append(subsum(f[i]))
-    
+       
     print()
     print('fitness')
     print(sumf)
-    #print('sume')
-    #print(sume)
-    
-    #print()
-    #import numpy as np
-    #print(np.sum(sume))
-    
-    #srt = np.array(sumf)
-    #print(srt)
     
     urut= np.argsort(sorted(range(len(sumf)),key=sumf.__getitem__))
-    #def argsort(1):
-    #    return sorted(range(len(1)), key=1.__getitem__)
-    #for i in range(len(srt)):
-    #    c=np.argsort(srt)
-    #    urut.append(c)
-    #np.argsort(srt)
-    #print('urut')
-    #print(urut)
-    
+     
     urut1=[]
     for i in range(len(urut)):
         urut1.append(urut[i]+1)
     print('urutan')
     print(urut1)
     
-    #sorted_list = sorted(sumf)
-    ##sorted_list = sorted(sumf, reverse = True)
-    #
-    #print('rank')
-    ##print(sorted_list)
-    #srl = np.sort(sorted_list)
-    #print(srl)
-    ##print(srt)
     
     
     
-    #fitrank =np.array(range(10,100,10))
-    #print(fitrank)
-    #fitrank1 =np.array(range(1,11))
-    #print(fitrank1)
-    #
-    #fr =[]
-    #for i in range (len(sumf)):
-    ##    frr = []
-    #    if sumf [i]<= sumf[i+0]:
-    ##        frr.append (fitrank1[i])
-    #         fr.append(fitrank1[i])
-    #
-    #
-    #print(fr)       
-        
+     
     prob=np.zeros((10,1))
     for i in range(10):
         prob[i] = urut1[i]/len(urut1)
-    print('peluang adalah')
+    print('Probability for each chromosome : ')
     print('==========')
     print(prob)
     print( )  
@@ -231,7 +171,7 @@ for x in range (iterasii):
     for i in range (10):
         kum = kum + prob[i,0]
         kumulatif[i,0]=kum
-    print('kumulatif adalah')
+    print('Cumulative prob for each chromosome : ')
     print('==========')
     print(kumulatif)
     print( )  
@@ -250,22 +190,9 @@ for x in range (iterasii):
     for i in range (10):
         rr = random.uniform(0,1)
         RR[i,0]=rr
-    #print('nilai r')
-    #print('==========')
+    
     print(RR)
     
-    #RR = np.zeros((10,1))
-    #for i in range (10):
-    #    r = random.uniform(0,1)
-    #    RR[i,0]=r
-    #print('nilai r')
-    #print('==========')
-    #print(RR)
-    #print( )
-    
-    
-    
-    #print( )
     
     mpopn=[]
     
@@ -274,7 +201,7 @@ for x in range (iterasii):
     
     while looprr<=9:
         while loopkum<=9:
-    #        print('looprr ',looprr,'loopkum ',loopkum )
+   
             if RR[looprr]<= kumulatifrw[loopkum]:
                 mpopn.append(gen[loopkum])
                 looprr+=1
@@ -284,51 +211,9 @@ for x in range (iterasii):
             if looprr==10:
                 break
                                          
-    ##mpopn = []
-    ##for i in range (10):
-    ##    j=i
-    ##    while j<=9:
-    ###        RR = random.uniform(0,1)
-    ##        if RR[i]<=kumulatifrw[j]:
-    ###            mpopn[i]=gen[j]
-    ##            mpopn.append(gen[j])
-    ##            break
-    #
-    #
-    
-    #print(np.array(gen))        
     print("POPULASI BARU")
     print('==========')
-    #print(len(mpopn))
-    #print()
-    #print(np.array(mpopn))
-    mpopna=np.array(mpopn)
-    #print(mpopna)
-    
-                
-    ##ic = 2
-    ##cross = []
-    ##for i in range (ic):
-    ##    for j in range (4-ic):
-    ##        cr =cross.append(mpopn[0][i+2])
-    ##        cr1 =cross.append(mpopn [i][i+2])
-    ###        cross.append(cr)
-    ##        cross.append(cr1)
-    ##
-    ##print('coba cros', cross)
-    #        
-    ##cr=[]
-    ##for j in range(len(mpopn)):
-    ##    cr.append(mpopn[j])
-    ##
-    ##for i in range(len(cr)):
-    ##    if np.mod(i,2)==0:
-    ##        for k in range(2):
-    ##            temp=[]
-    ##            temp=cr[i][k]
-    ##            cr[i][k]=cr[i+1][k]
-    ##            cr[i+1][k]=temp
-    #
+   
     cr=[]
     for j in range(len(mpopna)):
         cr.append(mpopna[j])
@@ -341,9 +226,7 @@ for x in range (iterasii):
                 cr[i][k]=cr[i+1][k]
                 cr[i+1][k]=temp
     print('udah di crossover')
-    #print(np.array(cr))
-    #
-    #
+    
     from random import uniform
     from random import randint
     probmut = 0.7
@@ -352,7 +235,7 @@ for x in range (iterasii):
         rmutasi= uniform(0,1)
         rmut0[i,0]=rmutasi
     
-    print('rmutasi')
+    print('Mutation prob : ')
     print(rmut0)
     print()
     
@@ -418,8 +301,7 @@ for x in range (iterasii):
                 subb=[]
     
     print()
-    #print('f')
-    #print(f)
+    
     sumeb=[]
     for i in range(len(fb)):
         subsumb=[]
@@ -429,7 +311,7 @@ for x in range (iterasii):
     def infitb(matrb,i,j):
         matrb=[]
         for t in range(i,j):
-    #        print(a)
+    
             matrb.append(sumeb[t])
         return matrb   
     
@@ -443,9 +325,7 @@ for x in range (iterasii):
         subsumfb=[]
         subsumfb.append(np.sum(fitb[i]))
         sumfb.append(subsumfb)
-    #    subsume=[]
-    #    subsume.append(subsum(f[i]))
-    
+        
     print()
     print('fitness')
     print(sumfb)
@@ -499,8 +379,7 @@ for x in range (iterasii):
     loopkumb=0
     while looprrb<=9:
         while loopkumb<=19:
-    #        print('looprr ',looprr,'loopkum ',loopkum )
-            if RRb[looprrb]<= kumulatifrwb[loopkumb]:
+                if RRb[looprrb]<= kumulatifrwb[loopkumb]:
                 mpopnb.append(popgab[loopkumb])
                 looprrb+=1
                 loopkumb=0
@@ -526,8 +405,7 @@ for x in range (iterasii):
                 subb2=[]
     
     print()
-    #print('f')
-    #print(f)
+    
     sumeb2=[]
     for i in range(len(fb2)):
         subsumb2=[]
@@ -537,7 +415,7 @@ for x in range (iterasii):
     def infitb2(matrb2,i,j):
         matrb2=[]
         for t2 in range(i,j):
-    #        print(a)
+    
             matrb2.append(sumeb2[t2])
         return matrb2   
     
@@ -551,8 +429,7 @@ for x in range (iterasii):
         subsumfb2=[]
         subsumfb2.append(np.sum(fitb2[i]))
         sumfb2.append(subsumfb2)
-    #    subsume=[]
-    #    subsume.append(subsum(f[i]))
+    
     
     print()
     print('fitness')
@@ -563,23 +440,3 @@ for x in range (iterasii):
     
     gennn = mpopnb
 ############################################################################
-
-#from Bio import AlignIO
-#count = AlignIO.convert("mpop11.fasta", "fasta", "mpop11.sth","stockholm")
-#print("Converted %i alignments" % count)
-
-#alignment3 = AlignIO.read("mpop11.sth", "stockholm")
-#align_array = np.array([list(rec) for rec in alignment3], np.character)
-#print("Array shape %i by %i" % align_array.shape)
-#
-#align_array3 = np.array([list(rec) for rec in alignment3], np.character, order="F")
-#
-##matriks hasil dari clustalw
-#print('array')
-#print (align_array3)
-
-#number_columns = 23
-#sample_string = '-----------------------'
-#
-#l = [list(sample_string[i:i+number_columns]) for i in range(0, len(sample_string), number_columns)]
-#matrix = [s if len(s) == number_columns else s+[None]*(number_columns-len(s)) for s in l]
